@@ -37,14 +37,14 @@ public class AdminConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
     @Override
-    protected void configure(HttpSecurity http)throws  Exception{
-        http.authorizeRequests()
-                .antMatchers("/*").permitAll()
-                .antMatchers("/admin/*").hasAnyAuthority("ADMIN")
+    protected void configure(HttpSecurity http) throws  Exception{
+        http.authorizeRequests().antMatchers("/*").permitAll()
+                .antMatchers("/admin/*")
+                .hasAnyAuthority("ADMIN")
                 .and()
                 .formLogin().loginPage("/login")
                 .loginProcessingUrl("/do-login")
-                .defaultSuccessUrl("/admin/index")
+                .defaultSuccessUrl("/index")
                 .permitAll()
                 .and()
                 .logout()
